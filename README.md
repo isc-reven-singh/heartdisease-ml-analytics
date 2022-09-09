@@ -254,5 +254,5 @@ Open the [Heart Disease Risk Prediction Dashboard](http://localhost:52773/csp/he
 
 ![/images/dashboard.png](https://github.com/isc-reven-singh/heartdisease-ml-analytics/blob/main/images/dashboard.png)
 
-Explore the [Observations](http://localhost:52773/csp/heartapp/_DeepSee.UI.Analyzer.zen?$NAMESPACE=HEARTAPP&PIVOT=HeartApp%2FHeartRiskByAge.pivot) further. Explore the (cube definition)(http://localhost:52773/csp/heartapp/_DeepSee.UI.Architect.zen?$NAMESPACE=HEARTAPP&$NAMESPACE=HEARTAPP&) and expand on the data available in the cube to build your own pivots and dashboards.
+Explore the [Observations](http://localhost:52773/csp/heartapp/_DeepSee.UI.Analyzer.zen?$NAMESPACE=HEARTAPP&PIVOT=HeartApp%2FHeartRiskByAge.pivot) further. Explore the [cube definition](http://localhost:52773/csp/heartapp/_DeepSee.UI.Architect.zen?$NAMESPACE=HEARTAPP&$NAMESPACE=HEARTAPP&) and expand on the data available in the cube to build your own pivots and dashboards.
 
