@@ -1,6 +1,8 @@
 # heartdisease-ml-analytics
 
-A demonstration of how to use InterSystems IRIS Data Platform to perform machine learning using IntegratedML, as well as build a cube and dashboard to analyze near real-time data.
+A demonstration of how to use InterSystems IRIS for Health Data Platform to perform machine learning using IntegratedML, as well as build a cube and dashboard to analyze near real-time data.
+
+This demo uses a sample dataset containing various patient observations related to risk of heart disease. In the demo, the data will be prepared, a machine learning model will be created and new patient observations will be scored against the model via a REST API to determine the patient's risk of heart disease. The results will be displayed on a dashboard, updating in near real-time.
  
  ## Prerequisites
  This demo requires that you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
@@ -28,6 +30,60 @@ docker-compose up -d
 ```
 
 ## How to Use it
+
+### Log into InterSystems IRIS for Health
+------------------------------------------
+Open [InterSystems IRIS Management Portal](http://localhost:52773/csp/sys/UtilHome.csp) on your browser.
+
+The default account _SYSTEM / SYS will need to be changed at first login.
+
+
+### Prepare the data to create a Machine Learning Model
+------------------------------------------
+
+In the docker build step above, data was imported into a table called _"HeartApp_Patient.Observations"_. This data must first be split into a training and testing set using a 70/30 split of the 899 records. To do this, open the [SQL editor](http://localhost:52773/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=HEARTAPP) in the management console to run SQL scripts below.
+
+```
+CREATE TABLE HeartApp_Patient.ObservationsMLTrain
+AS 
+SELECT 
+		ID, 
+		Age, 
+		ChestPainType, 
+		Cholesterol, 
+		ExerciseAngina, 
+		FastingBS, 
+		HeartDisease, 
+		MaxHR, 
+		OldPeak, 
+		RestingBP, 
+		RestingECG, 
+		STSlope, 
+		Sex 
+FROM HeartApp_Patient.Observations
+WHERE ID <= 629 ---70% of total data size
+```
+
+```
+CREATE TABLE HeartApp_Patient.ObservationsMLTest
+AS 
+SELECT 
+		ID, 
+		Age, 
+		ChestPainType, 
+		Cholesterol, 
+		ExerciseAngina, 
+		FastingBS, 
+		HeartDisease, 
+		MaxHR, 
+		OldPeak, 
+		RestingBP, 
+		RestingECG, 
+		STSlope, 
+		Sex 
+FROM HeartApp_Patient.Observations
+WHERE ID > 629 ---remaining 30% of data
+```
 
 
 ------------------------------
@@ -83,15 +139,7 @@ Consume events from a topic
 kafka-console-consumer.sh --topic agentworklist --bootstrap-server localhost:9092
 ```
 
-### Start the InterSystems IRIS Production
-------------------------------------------
-Open [InterSystems IRIS Management Portal](http://localhost:52773/csp/sys/UtilHome.csp) on your browser.
 
-The default account _SYSTEM / SYS will need to be changed at first login.
-
-Start the Production [KafkaBank.Stream.Production](http://localhost:52773/csp/kafkabank/EnsPortal.ProductionConfig.zen?PRODUCTION=KafkaBank.Stream.Production) by clicking the "Start" button.
-
-This Production consumes messages from the _"cctransactions"_ topic, processes the message and produces an output to the _"agentworklist"_ topic.
 
 
 Go back to the **Shell 3**
