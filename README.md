@@ -137,6 +137,15 @@ SELECT 0 ID,
 ```
 
 
+### Update the REST API configuration
+------------------------------------------
+
+Go to the web application definition for the [/heartapp](http://localhost:52773/csp/sys/sec/%25CSP.UI.Portal.Applications.Web.zen?PID=%2Fheartapp) web app. Update the defintion as follows:
+
+- Switch application type from _"CSP/ZEN"_ to _"REST"_
+- Set the Dispatch class to _"HeartApp.REST.Server"_
+- Click _"Save"_
+
 
 ------------------------------
 
