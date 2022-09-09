@@ -155,6 +155,8 @@ Using the REST API above and the _"HeartDiseaseRisk"_ model, next predict the ri
 
 Using Postman, send a _"POST"_ request to localhost:52773/heartapp/predict. Ensure that an Authorization header is set to pass through basic authentication in your request using the "_SYSTEM"_ user.
 
+![/images/Postman.png](https://github.com/isc-reven-singh/heartdisease-ml-analytics/blob/main/images/Postman.png)
+
 Send multiple requests using the following request bodies, sending them one at a time:
 
 ```
@@ -249,6 +251,8 @@ The REST API will return an output like below:
 ### View the Heart Disease Risk Prediction Dashboard
 ----------------------------------------------
 Open the [Heart Disease Risk Prediction Dashboard](http://localhost:52773/csp/heartapp/_DeepSee.UserPortal.DashboardViewer.zen?DASHBOARD=HeartApp/HeartDiseaseRisk.dashboard) to view, in near real-time, a count of all patients predicted to be at risk of heart disease.
+
+![/images/dashboard.png](https://github.com/isc-reven-singh/heartdisease-ml-analytics/blob/main/images/dashboard.png)
 
 Explore the [Observations](http://localhost:52773/csp/heartapp/_DeepSee.UI.Analyzer.zen?$NAMESPACE=HEARTAPP&PIVOT=HeartApp%2FHeartRiskByAge.pivot) further. Explore the (cube definition)(http://localhost:52773/csp/heartapp/_DeepSee.UI.Architect.zen?$NAMESPACE=HEARTAPP&$NAMESPACE=HEARTAPP&) and expand on the data available in the cube to build your own pivots and dashboards.
 
