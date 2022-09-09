@@ -1,0 +1,20 @@
+    ; run installer to create namespace
+    do $SYSTEM.OBJ.Load("/opt/heartapp/Installer.cls", "ck")
+    set sc = ##class(App.Installer).setup() 
+    new $namespace
+    set namespace = "HEARTAPP"
+    set $namespace=namespace
+    set app = $System.CSP.GetDefaultApp(namespace) _ "/"
+    do EnableDeepSee^%SYS.cspServer(app)
+    set status = ##class(%DeepSee.Utils).%BuildCube("PatientCube")
+
+    
+    set pFile = "/usr/irissys/mgr/src/HeartDiseaseRisk.xml"
+    Do ##class(%DeepSee.UserLibrary.Utils).%Import(pFile,1)
+    set sc = ##class(HeartApp.Utilities.Scheduler).CreateTask()
+
+    
+    zn "%SYS"
+    Do ##class(Security.Users).UnExpireUserPasswords("*")
+    ; call your initial methods here
+    halt
