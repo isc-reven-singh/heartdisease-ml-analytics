@@ -147,6 +147,94 @@ Go to the web application definition for the [/heartapp](http://localhost:52773/
 - Click _"Save"_
 
 
+### Predict risk of heart disease
+------------------------------------------
+
+Using Postman, send a _"POST"_ request to localhost:52773/heartapp/predict. Ensure that an Authorization header is set to pass through basic authentication in your request using the "_SYSTEM"_ user.
+
+Send multiple requests using the following request bodies, sending them one at a time:
+
+```
+{
+      "age": 61,
+      "sex": "M",
+      "chest_pain_type": "ASY",
+      "resting_bp": 148,
+      "cholesterol": 203,
+      "fasting_bs": 0,
+      "resting_ecg": "Normal",
+      "max_hr": 161,
+      "exercise_angina": "N",
+      "old_peak": 0,
+      "st_slope": "Up"
+    }
+ ```
+ 
+ ```
+ {
+      "age": 58,
+      "sex": "M",
+      "chest_pain_type": "ASY",
+      "resting_bp": 114,
+      "cholesterol": 318,
+      "fasting_bs": 0,
+      "resting_ecg": "ST",
+      "max_hr": 140,
+      "exercise_angina": "N",
+      "old_peak": 4.4,
+      "st_slope": "Down"
+    }
+```
+
+```
+{
+      "age": 58,
+      "sex": "F",
+      "chest_pain_type": "ASY",
+      "resting_bp": 170,
+      "cholesterol": 225,
+      "fasting_bs": 1,
+      "resting_ecg": "LVH",
+      "max_hr": 146,
+      "exercise_angina": "Y",
+      "old_peak": 2.8,
+      "st_slope": "Flat"
+    }
+```
+
+```
+{
+      "age": 58,
+      "sex": "M",
+      "chest_pain_type": "ATA",
+      "resting_bp": 125,
+      "cholesterol": 220,
+      "fasting_bs": 0,
+      "resting_ecg": "Normal",
+      "max_hr": 144,
+      "exercise_angina": "N",
+      "old_peak": 0.4,
+      "st_slope": "Flat"
+    }
+```
+
+```
+{
+      "age": 56,
+      "sex": "M",
+      "chest_pain_type": "ATA",
+      "resting_bp": 130,
+      "cholesterol": 221,
+      "fasting_bs": 0,
+      "resting_ecg": "LVH",
+      "max_hr": 163,
+      "exercise_angina": "N",
+      "old_peak": 0,
+      "st_slope": "Up"
+    }
+```
+
+
 ------------------------------
 
 
