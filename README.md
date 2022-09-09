@@ -5,7 +5,7 @@ A demonstration of how to use InterSystems IRIS for Health Data Platform to perf
 This demo uses a sample dataset containing various patient observations related to risk of heart disease. In the demo, the data will be prepared, a machine learning model will be created and new patient observations will be scored against the model via a REST API to determine the patient's risk of heart disease. The results will be displayed on a dashboard, updating in near real-time.
  
  ## Prerequisites
- This demo requires that you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Docker desktop](https://www.docker.com/products/docker-desktop) installed.
+ This demo requires that you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Docker desktop](https://www.docker.com/products/docker-desktop) and [Postman](https://www.postman.com/downloads/) installed.
  
  ## Installation 
 
@@ -84,6 +84,58 @@ SELECT
 FROM HeartApp_Patient.Observations
 WHERE ID > 629 ---remaining 30% of data
 ```
+
+CREATE ML Model HeartDiseaseRisk to determine the risk of heart disease
+```
+CREATE MODEL HeartDiseaseRisk 
+PREDICTING (HeartDisease) 
+FROM HeartApp_Patient.ObservationsMLTrain
+```
+
+Configure ML Provider - Optional
+```
+CREATE ML CONFIGURATION H2OConfig PROVIDER H2O
+```
+```
+SET ML CONFIGURATION H2OConfig
+```
+
+Train HeartDiseaseRisk Model using training data set
+```
+TRAIN MODEL HeartDiseaseRisk
+```
+
+Test/validate Model use test data set to determine accuracy
+```
+VALIDATE MODEL HeartDiseaseRisk AS HeartDiseaseRiskValidation From HeartApp_Patient.ObservationsMLTest
+```
+
+View validation metrics
+```
+SELECT * FROM INFORMATION_SCHEMA.ML_VALIDATION_METRICS
+```
+
+Test that the model works by scoring against some manual input
+```
+SELECT *, 
+		PREDICT(HeartDiseaseRisk) As PredictedHeartDisease
+FROM
+(
+SELECT 0 ID,
+		61 Age, 
+		'ASY' ChestPainType, 
+		203 Cholesterol, 
+		'N' ExerciseAngina, 
+		0 FastingBS, 
+		161 MaxHR, 
+		0 OldPeak, 
+		148 RestingBP, 
+		'Normal' RestingECG, 
+		'Up' STSlope, 
+		'M' Sex 
+		)
+```
+
 
 
 ------------------------------
