@@ -3,6 +3,9 @@
 A demonstration of how to use InterSystems IRIS for Health Data Platform to perform machine learning using IntegratedML, as well as build a cube and dashboard to analyze near real-time data.
 
 This demo uses a sample dataset containing various patient observations related to risk of heart disease. In the demo, the data will be prepared, a machine learning model will be created and new patient observations will be scored against the model via a REST API to determine the patient's risk of heart disease. The results will be displayed on a dashboard, updating in near real-time.
+
+##Solution
+![/images/ml-demo.png](https://github.com/isc-reven-singh/heartdisease-ml-analytics/blob/main/images/ml-demo.png)
  
  ## Prerequisites
  This demo requires that you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Docker desktop](https://www.docker.com/products/docker-desktop) and [Postman](https://www.postman.com/downloads/) installed.
