@@ -88,13 +88,6 @@ FROM HeartApp_Patient.Observations
 WHERE ID > 629 ---remaining 30% of data
 ```
 
-CREATE ML Model HeartDiseaseRisk to determine the risk of heart disease
-```
-CREATE MODEL HeartDiseaseRisk 
-PREDICTING (HeartDisease) 
-FROM HeartApp_Patient.ObservationsMLTrain
-```
-
 Configure ML Provider - Optional
 ```
 CREATE ML CONFIGURATION H2OConfig PROVIDER H2O
@@ -102,6 +95,15 @@ CREATE ML CONFIGURATION H2OConfig PROVIDER H2O
 ```
 SET ML CONFIGURATION H2OConfig
 ```
+
+Create ML Model HeartDiseaseRisk to determine the risk of heart disease
+```
+CREATE MODEL HeartDiseaseRisk 
+PREDICTING (HeartDisease) 
+FROM HeartApp_Patient.ObservationsMLTrain
+```
+
+
 
 Train HeartDiseaseRisk Model using training data set
 ```
