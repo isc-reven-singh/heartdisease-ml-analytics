@@ -158,7 +158,7 @@ Go to the web application definition for the [/heartapp](http://localhost:52773/
 Using the REST API above and the _"HeartDiseaseRisk"_ model, next predict the risk of heart disease by posting sets of observations to the REST API which scores these using the model and returns a heart disease risk prediction of _0_ or _1_ indicating either low risk or high risk respectively.
 
 
-Using Postman, send a _"POST"_ request to localhost:52773/heartapp/predict. Ensure that an Authorization header is set to pass through basic authentication in your request using the "_SYSTEM"_ user.
+Using Postman, send a _"POST"_ request to localhost:52773/heartapp/predict. Ensure that an Authorization header is set to pass through basic authentication in your request using the "__SYSTEM"_ user.
 
 ![/images/Postman.png](https://github.com/isc-reven-singh/heartdisease-ml-analytics/blob/main/images/Postman.png)
 
